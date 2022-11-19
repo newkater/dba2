@@ -23,7 +23,7 @@ export const UserList: FC = () => {
     return (<>
         {isLoading ? <div>loading users ....</div> :
             <ul>
-                {users.map(user => <li>{user.email}</li>)}
+                {users.map(user => <li key={user.email}>{user.email}</li>)}
             </ul>}
     </>);
 }

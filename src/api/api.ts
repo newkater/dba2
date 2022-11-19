@@ -6,6 +6,6 @@ export const Users = {
     getList: () => Get<User[]>(`${BaseURL}/users`),
     update: (user: User) => Put<User, User>(`${BaseURL}/users/${user.email}`, user),
     delete: (user: User) => Delete<Response>(`${BaseURL}/users/${user.email}`),
-    create: (user: User) => Post<User, User>(`${BaseURL}/users/${user.email}`, user),
+    create: (user: User) => Post<User, User>(`${BaseURL}/users`, user),
     get: (user: string) => Get<User>(`${BaseURL}/users/${user}`)
 }
