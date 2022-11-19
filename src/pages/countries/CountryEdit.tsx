@@ -1,9 +1,9 @@
 import {FC} from "react";
 import {useParams} from "react-router-dom";
 
-export const UserEdit: FC = () => {
+export const CountryEdit: FC = () => {
     const {id} = useParams();
     return (<>
-        <h2>User Edit Page {id}</h2>
+        <h2>Country Edit Page {id}</h2>
     </>)
 };
