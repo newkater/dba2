@@ -7,5 +7,5 @@ export const Users = {
     update: (user: User) => Put<User, User>(`${BaseURL}/users/${user.email}`, user),
     delete: (user: User) => Delete<Response>(`${BaseURL}/users/${user.email}`),
     create: (user: User) => Post<User, User>(`${BaseURL}/users`, user),
-    get: (user: string) => Get<User>(`${BaseURL}/users/${user}`)
+    get: (user: string) => Get<[User]>(`${BaseURL}/users?email=eq.${user}`).then(res => res.length > 0?res[0]:undefined)
 }
