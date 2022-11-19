@@ -1,6 +1,6 @@
 import {FC} from "react";
 
-export const UserCreate: FC = () => {
+export const UserCreatePage: FC = () => {
     return (<>
         <h2>User Details Page</h2>
     </>)

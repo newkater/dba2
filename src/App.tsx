@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Layout, Home} from "./pages";
-import {UserCreate, UserEdit, UserList} from "./pages/users";
+import {UserCreatePage, UserEditPage, UserListPage} from "./pages/users";
 import {CountryCreate, CountryEdit, CountryList} from "./pages/countries";
 import {DiseaseCreate, DiseaseEdit, DiseaseList} from "./pages/diseases";
 
@@ -13,8 +13,8 @@ function App() {
                 <Route path='/' element={<Layout/>}>
                     <Route index element={<Home/>}></Route>
                     <Route path='users'>
-                        <Route index element={<UserList/>}/>
-                        <Route path='create' element={<UserCreate/>}/>                        <Route path=':id' element={<UserEdit/>}/>
+                        <Route index element={<UserListPage/>}/>
+                        <Route path='create' element={<UserCreatePage/>}/>                        <Route path=':id' element={<UserEditPage/>}/>
                     </Route>
                     <Route path='countries'>
                         <Route index element={<CountryList/>}/>
