@@ -1,7 +1,7 @@
 import {User} from "../models/User";
 import {Delete, Get, Post, Put} from "./fetch";
 
-const BaseURL = "http://localhost:3002";
+const BaseURL = `${process.env.REACT_APP_BASE_URL}`;
 export const Users = {
     getList: () => Get<User[]>(`${BaseURL}/users`),
     update: (user: User) => Put<User, User>(`${BaseURL}/users/${user.email}`, user),
