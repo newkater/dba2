@@ -5,4 +5,4 @@ export interface User {
     salary: number,
     phone: string,
     cname: string
-};
+}
