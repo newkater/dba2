@@ -67,7 +67,7 @@ export const UserForm: FC<UserFormProps> = ({user, formType}) => {
                          max={600000} step={1000}></NumberField>
             <TextField name={"phone"} value={userForm.phone} label={"Phone Number"} onChange={handleChange}></TextField>
             <SelectField value={userForm.cname} onChange={handleChange} label={"Country"} name={"cname"}
-                         options={countries.map(opt => [opt.cname, opt.cname])}></SelectField>
+                         options={countries.map(opt => ({text: opt.cname, value: opt.cname}))}></SelectField>
             <div>
                 <button type={"button"} onClick={handleSubmit}>Submit</button>
                 <button type={"button"} onClick={() => navigate("/users")}>Cancel</button>
