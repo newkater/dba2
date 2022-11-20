@@ -14,7 +14,10 @@ export const Users = {
 }
 
 export const Countries = {
-    getList: () => Get<Country[]>(`${BaseURL}/country`)
+    getList: () => Get<Country[]>(`${BaseURL}/country`),
+    update: (country: Country) => Patch<Country, Country>(`${BaseURL}/country?cname=eq.${country.cname}`, country),
+    get: (country: string) => Get<[Country]>(`${BaseURL}/country?cname=eq.${country}`).then(res => res.length > 0 ? res[0] : undefined),
+    create: (country: Country) => Post<Country, Country>(`${BaseURL}/country`, country),
 }
 
 export const Diseases = {

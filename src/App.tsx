@@ -23,7 +23,7 @@ function App() {
                     <Route path='countries'>
                         <Route index element={<CountryListPage/>}/>
                         <Route path='create' element={<CountryCreatePage/>}/>
-                        <Route path=':id' element={<CountryEditPage/>}/>
+                        <Route path=':cname' element={<CountryEditPage/>}/>
                     </Route>
                     <Route path='diseases'>
                         <Route index element={<DiseaseListPage/>}/>

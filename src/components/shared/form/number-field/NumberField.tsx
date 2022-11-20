@@ -9,13 +9,14 @@ export interface NumberFieldProps {
     placeholder?: string,
     max?: number,
     min?: number,
-    step?: number
+    step?: number,
+    readonly?: boolean
 }
 
 export const NumberField: FC<NumberFieldProps> = ({
                                                       label, name, className,
                                                       placeholder, value, onChange,
-                                                      min, max, step
+                                                      min, max, step, readonly = false
                                                   }) => {
 
 
@@ -23,6 +24,7 @@ export const NumberField: FC<NumberFieldProps> = ({
         <label>
             {label}
             <input type="number"
+                   readOnly={readonly}
                    name={name}
                    value={value}
                    onChange={onChange}

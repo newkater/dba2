@@ -7,7 +7,7 @@ export const DiscoverList: FC = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [discovers, setDiscovers] = useState<Discover[]>([]);
     useEffect(() => {
-        const getUsers = async () => {
+        const getDiscovers = async () => {
             setIsLoading(true);
             console.log("users loading");
             try {
@@ -19,7 +19,7 @@ export const DiscoverList: FC = () => {
                 setIsLoading(false);
             }
         }
-        getUsers();
+        getDiscovers();
     }, [])
     return (<>
         {isLoading ? <div>loading users ....</div> :
