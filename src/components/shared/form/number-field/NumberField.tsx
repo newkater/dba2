@@ -24,7 +24,7 @@ export const NumberField: FC<NumberFieldProps> = ({
         <label>
             {label}
             <input type="number"
-                   readOnly={readonly}
+                   disabled={readonly}
                    name={name}
                    value={value}
                    onChange={onChange}
