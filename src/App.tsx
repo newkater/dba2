@@ -3,8 +3,11 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Layout, Home} from "./pages";
 import {UserCreatePage, UserEditPage, UserListPage} from "./pages/users";
-import {CountryCreate, CountryEdit, CountryList} from "./pages/countries";
-import {DiseaseCreate, DiseaseEdit, DiseaseList} from "./pages/diseases";
+import {CountryCreatePage, CountryEditPage, CountryListPage} from "./pages/countries";
+import {DiseaseCreatePage, DiseaseEditPage, DiseaseListPage} from "./pages/diseases";
+import {DiscoverListPage} from "./pages/discovers/DiscoverListPage";
+import {DiscoverCreatePage} from "./pages/discovers/DiscoverCreatePage";
+import {DiscoverEditPage} from "./pages/discovers";
 
 function App() {
     return (
@@ -18,14 +21,19 @@ function App() {
                         <Route path=':id' element={<UserEditPage/>}/>
                     </Route>
                     <Route path='countries'>
-                        <Route index element={<CountryList/>}/>
-                        <Route path='create' element={<CountryCreate/>}/>
-                        <Route path=':id' element={<CountryEdit/>}/>
+                        <Route index element={<CountryListPage/>}/>
+                        <Route path='create' element={<CountryCreatePage/>}/>
+                        <Route path=':id' element={<CountryEditPage/>}/>
                     </Route>
                     <Route path='diseases'>
-                        <Route index element={<DiseaseList/>}/>
-                        <Route path='create' element={<DiseaseCreate/>}/>
-                        <Route path=':id' element={<DiseaseEdit/>}/>
+                        <Route index element={<DiseaseListPage/>}/>
+                        <Route path='create' element={<DiseaseCreatePage/>}/>
+                        <Route path=':id' element={<DiseaseEditPage/>}/>
+                    </Route>
+                    <Route path='discover'>
+                        <Route index element={<DiscoverListPage/>}/>
+                        <Route path='create' element={<DiscoverCreatePage/>}/>
+                        <Route path=':cname/:disease_code' element={<DiscoverEditPage/>}/>
                     </Route>
                 </Route>
             </Routes>

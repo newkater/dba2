@@ -17,7 +17,6 @@ export interface UserFormProps {
 export const UserForm: FC<UserFormProps> = ({user, formType}) => {
     const {form, handleChange} = useForm(user);
 
-    //const [form, setForm] = useState(user);
     const [countries, setCountries] = useState<Country[]>([]);
     const navigate = useNavigate();
 
@@ -34,10 +33,6 @@ export const UserForm: FC<UserFormProps> = ({user, formType}) => {
         };
         loadCountries();
     }, []);
-
-    // const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    //     setUserForm({...form, [event.target.name]: event.target.value})
-    // }
 
     const handleSubmit = async () => {
         console.log("submiting....");

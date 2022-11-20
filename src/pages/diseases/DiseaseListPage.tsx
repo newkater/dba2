@@ -1,6 +1,6 @@
 import {FC} from "react";
 
-export const DiseaseList: FC = () => {
+export const DiseaseListPage: FC = () => {
     return (<>
         <h2>Disease List Page</h2>
     </>)

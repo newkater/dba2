@@ -1,5 +1,5 @@
-import {CountryEdit} from "./CountryEdit";
-import {CountryList} from "./CountryList";
-import {CountryCreate} from "./CountryCreate";
+import {CountryEditPage} from "./CountryEditPage";
+import {CountryListPage} from "./CountryListPage";
+import {CountryCreatePage} from "./CountryCreatePage";
 
-export {CountryCreate, CountryEdit, CountryList};
+export {CountryCreatePage, CountryEditPage, CountryListPage};

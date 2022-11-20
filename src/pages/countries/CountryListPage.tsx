@@ -1,6 +1,6 @@
 import {FC} from "react";
 
-export const CountryList: FC = () => {
+export const CountryListPage: FC = () => {
     return (<>
         <h2>Country List Page</h2>
     </>)

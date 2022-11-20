@@ -10,6 +10,7 @@ export const Layout: FC = () => {
                 <li><Link to='/users'>Users</Link></li>
                 <li><Link to='/countries'>Countries</Link></li>
                 <li><Link to='/diseases'>Diseases</Link></li>
+                <li><Link to='/discover'>Discovers</Link></li>
             </ul>
         </nav>
         <Outlet></Outlet>
