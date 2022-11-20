@@ -21,12 +21,23 @@ export const UserForm: FC<UserFormProps> = ({user, formType}) => {
     const handleSubmit = async () => {
         console.log("submiting....");
         console.log(values);
-        try {
-            await api.Users.create(values);
-            navigate("/users");
-        } catch (e) {
-            console.log("creation error");
+        if (formType === "create") {
+            try {
+                await api.Users.create(values);
+                navigate("/users");
+            } catch (e) {
+                console.log("creation error");
+            }
         }
+        else if (formType === "edit") {
+            try {
+                await api.Users.update(values);
+                navigate("/users");
+            } catch (e) {
+                console.log("editing error");
+            }
+        }
+
     }
 
     return (<div>
@@ -40,6 +51,7 @@ export const UserForm: FC<UserFormProps> = ({user, formType}) => {
             <TextField name={"cname"} value={values.cname} label={"Country"} onChange={handleChange}></TextField>
             <div>
                 <button type={"button"} onClick={handleSubmit}>Submit</button>
+                <button type={"button"} onClick={()=>navigate("/users")}>Cancel</button>
             </div>
         </form>
     </div>);

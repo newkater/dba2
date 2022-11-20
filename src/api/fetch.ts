@@ -63,3 +63,19 @@ export const Delete = async <TResponse>(url: string): Promise<TResponse> => {
     const response = await fetch(url, options);
     return parseResponse<TResponse>(await response.text());
 }
+
+export const Patch = async <TRequest, TResponse>(url: string, data: TRequest): Promise<TResponse> => {
+    const options: RequestInit = {
+        method: "PATCH",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "include",
+        headers: {"Content-Type": "application/json"},
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(data)
+    };
+
+    const response = await fetch(url, options);
+    return parseResponse<TResponse>(await response.text());
+}

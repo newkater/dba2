@@ -1,6 +1,7 @@
 import {FC, useEffect, useState} from "react";
 import {User} from "../../../models/User";
 import * as api from "../../../api/api"
+import {Link} from "react-router-dom";
 
 export const UserList: FC = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +24,9 @@ export const UserList: FC = () => {
     return (<>
         {isLoading ? <div>loading users ....</div> :
             <ul>
-                {users.map(user => <li key={user.email}>{user.email}</li>)}
+                {users.map(user => <li key={user.email}>{user.email}
+                    <Link rel="stylesheet" to={`/users/${user.email}`}>edit</Link>
+                </li>)}
             </ul>}
     </>);
 }
