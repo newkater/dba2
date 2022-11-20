@@ -6,7 +6,16 @@ import {Disease} from "../models/Disease";
 import {DiseaseType} from "../models/DiseaseType";
 
 const BaseURL = process.env.REACT_APP_BASE_URL;
+
 export const Users = {
+    getList: () => Get<User[]>(`${BaseURL}/users`),
+    update: (user: User) => Patch<User, User>(`${BaseURL}/users?email=eq.${user.email}`, user),
+    delete: (user: User) => Delete<Response>(`${BaseURL}/users/${user.email}`),
+    create: (user: User) => Post<User, User>(`${BaseURL}/users`, user),
+    get: (user: string) => Get<[User]>(`${BaseURL}/users?email=eq.${user}`).then(res => res.length > 0 ? res[0] : undefined)
+}
+
+export const Doctors = {
     getList: () => Get<User[]>(`${BaseURL}/users`),
     update: (user: User) => Patch<User, User>(`${BaseURL}/users?email=eq.${user.email}`, user),
     delete: (user: User) => Delete<Response>(`${BaseURL}/users/${user.email}`),
@@ -22,7 +31,10 @@ export const Countries = {
 }
 
 export const Diseases = {
-    getList: () => Get<Disease[]>(`${BaseURL}/disease`)
+    getList: () => Get<Disease[]>(`${BaseURL}/disease`),
+    update: (disease: Disease) => Patch<Disease, Disease>(`${BaseURL}/disease?disease_code=eq.${disease.disease_code}`, disease),
+    get: (disease: string) => Get<[Disease]>(`${BaseURL}/disease?disease_code=eq.${disease}`).then(res => res.length > 0 ? res[0] : undefined),
+    create: (disease: Disease) => Post<Disease, Disease>(`${BaseURL}/disease`, disease),
 }
 
 export const Discovers = {
@@ -33,7 +45,9 @@ export const Discovers = {
 }
 
 export const DiseaseTypes = {
-    getList: () => Get<DiseaseType[]>(`${BaseURL}/diseasetype`),
+    getList: () => Get<DiseaseType[]>(`${BaseURL}/diseasetype`).then(res => res.sort((a, b) => {
+        return a.id - b.id;
+    })),
     update: (diseasetype: DiseaseType) => Patch<DiseaseType, DiseaseType>(`${BaseURL}/diseasetype?id=eq.${diseasetype.id}`, diseasetype),
     get: (diseasetype: number) => Get<[DiseaseType]>(`${BaseURL}/diseasetype?id=eq.${diseasetype}`).then(res => res.length > 0 ? res[0] : undefined),
     create: (diseasetype: DiseaseType) => Post<DiseaseType, DiseaseType>(`${BaseURL}/diseasetype`, diseasetype),

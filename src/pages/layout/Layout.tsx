@@ -9,7 +9,7 @@ export const Layout: FC = () => {
                 <li><Link to='/'>Doctor</Link></li>
                 <li><Link to='/users'>Users</Link></li>
                 <li><Link to='/countries'>Countries</Link></li>
-                <li><Link to='/diseases'>Diseases</Link></li>
+                <li><Link to='/disease'>Diseases</Link></li>
                 <li><Link to='/diseasetype'>Disease Types</Link></li>
                 <li><Link to='/discover'>Discovers</Link></li>
             </ul>

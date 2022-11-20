@@ -1,5 +1,5 @@
-import {DiseaseListPage} from "./DiseaseListPage";
 import {DiseaseEditPage} from "./DiseaseEditPage";
+import {DiseaseListPage} from "./DiseaseListPage";
 import {DiseaseCreatePage} from "./DiseaseCreatePage";
 
-export {DiseaseCreatePage, DiseaseListPage, DiseaseEditPage};
+export {DiseaseCreatePage, DiseaseEditPage, DiseaseListPage};

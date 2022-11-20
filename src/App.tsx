@@ -32,7 +32,7 @@ function App() {
                         <Route path='create' element={<DiseaseTypeCreatePage/>}/>
                         <Route path=':id' element={<DiseaseTypeEditPage/>}/>
                     </Route>
-                    <Route path='diseases'>
+                    <Route path='disease'>
                         <Route index element={<DiseaseListPage/>}/>
                         <Route path='create' element={<DiseaseCreatePage/>}/>
                         <Route path=':id' element={<DiseaseEditPage/>}/>
