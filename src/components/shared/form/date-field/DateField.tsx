@@ -3,7 +3,7 @@ import React, {FC} from "react";
 export interface DateFieldProps {
     label: string,
     name: string,
-    value: string,
+    value: Date,
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     className?: string,
 }
@@ -19,7 +19,7 @@ export const DateField: FC<DateFieldProps> = ({
             {label}
             <input type="date"
                    name={name}
-                   value={value}
+                   value={value.toString()}
                    onChange={onChange}
             />
         </label>

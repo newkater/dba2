@@ -11,14 +11,16 @@ export interface SelectFieldProps {
     value: string,
     onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
     className?: string,
-    options: SelectFieldOption[]
+    options: SelectFieldOption[],
+    readonly?: boolean
 };
 
-export const SelectField: FC<SelectFieldProps> = ({label, name, onChange, value, options}) => {
+export const SelectField: FC<SelectFieldProps> = ({label, name, onChange, value, options, readonly = false}) => {
     return (<div>
         <label>
             {label}
             <select
+                disabled={readonly}
                 name={name}
                 value={value}
                 onChange={onChange}>
