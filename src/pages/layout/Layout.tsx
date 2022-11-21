@@ -6,7 +6,7 @@ export const Layout: FC = () => {
         <nav>
             <ul>
                 <li><Link to='/'>Home</Link></li>
-                <li><Link to='/'>Doctor</Link></li>
+                <li><Link to='/doctors'>Doctor</Link></li>
                 <li><Link to='/users'>Users</Link></li>
                 <li><Link to='/countries'>Countries</Link></li>
                 <li><Link to='/disease'>Diseases</Link></li>

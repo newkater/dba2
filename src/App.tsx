@@ -8,8 +8,8 @@ import {DiseaseCreatePage, DiseaseEditPage, DiseaseListPage} from "./pages/disea
 import {DiscoverListPage} from "./pages/discovers/DiscoverListPage";
 import {DiscoverCreatePage} from "./pages/discovers/DiscoverCreatePage";
 import {DiscoverEditPage} from "./pages/discovers";
-import {DiseaseTypeList} from "./components/disease-types/disease-type-list/DiseaseTypeList";
 import {DiseaseTypeCreatePage, DiseaseTypeEditPage, DiseaseTypeListPage} from "./pages/disease-types";
+import {DoctorCreatePage, DoctorEditPage, DoctorListPage} from "./pages/doctors";
 
 function App() {
     return (
@@ -21,6 +21,11 @@ function App() {
                         <Route index element={<UserListPage/>}/>
                         <Route path='create' element={<UserCreatePage/>}/>
                         <Route path=':id' element={<UserEditPage/>}/>
+                    </Route>
+                    <Route path='doctors'>
+                        <Route index element={<DoctorListPage/>}/>
+                        <Route path='create' element={<DoctorCreatePage/>}/>
+                        <Route path=':email' element={<DoctorEditPage/>}/>
                     </Route>
                     <Route path='countries'>
                         <Route index element={<CountryListPage/>}/>
@@ -35,7 +40,7 @@ function App() {
                     <Route path='disease'>
                         <Route index element={<DiseaseListPage/>}/>
                         <Route path='create' element={<DiseaseCreatePage/>}/>
-                        <Route path=':id' element={<DiseaseEditPage/>}/>
+                        <Route path=':disease_code' element={<DiseaseEditPage/>}/>
                     </Route>
                     <Route path='discover'>
                         <Route index element={<DiscoverListPage/>}/>

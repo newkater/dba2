@@ -1,6 +1,6 @@
 import {FC, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {Countries, DiseaseTypes} from "../../api/api";
+import {DiseaseTypes} from "../../api/api";
 import {DiseaseType} from "../../models/DiseaseType";
 import {DiseaseTypeForm} from "../../components/disease-types/disease-type-form/DiseaseTypeForm";
 
@@ -22,7 +22,7 @@ export const DiseaseTypeEditPage: FC = () => {
             }
         }
         loadDiseaseType();
-    }, [])
+    }, [id])
 
     return (<>
         <h2>Country Edit Page</h2>

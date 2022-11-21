@@ -22,10 +22,10 @@ export const DiseaseEditPage: FC = () => {
             }
         }
         loadDisease();
-    }, [])
+    }, [disease_code])
 
     return (<>
-        <h2>Country Edit Page</h2>
+        <h2>Disease Edit Page</h2>
 
         {disease === undefined ? <div>loading...</div> :
             <DiseaseForm formType="edit" disease={disease}></DiseaseForm>}

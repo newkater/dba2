@@ -2,7 +2,7 @@ import {FC, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {DiscoverForm} from "../../components/discovers/discover-form/DiscoverForm";
 import {Discover} from "../../models/Discover";
-import {Discovers, Diseases} from "../../api/api";
+import {Discovers} from "../../api/api";
 
 export const DiscoverEditPage: FC = () => {
     const {cname, disease_code} = useParams();
@@ -22,7 +22,7 @@ export const DiscoverEditPage: FC = () => {
             }
         }
         loadDiscover();
-    }, [])
+    }, [cname, disease_code])
 
     return (<>
         <h2>Discover Edit Page</h2>

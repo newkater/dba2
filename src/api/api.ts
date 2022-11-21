@@ -4,23 +4,24 @@ import {Country} from "../models/Country";
 import {Discover} from "../models/Discover";
 import {Disease} from "../models/Disease";
 import {DiseaseType} from "../models/DiseaseType";
+import {Doctor} from "../models/Doctor";
 
 const BaseURL = process.env.REACT_APP_BASE_URL;
 
 export const Users = {
     getList: () => Get<User[]>(`${BaseURL}/users`),
     update: (user: User) => Patch<User, User>(`${BaseURL}/users?email=eq.${user.email}`, user),
-    delete: (user: User) => Delete<Response>(`${BaseURL}/users/${user.email}`),
+    delete: (user: User) => Delete<Response>(`${BaseURL}/users?email=eq.${user.email}`),
     create: (user: User) => Post<User, User>(`${BaseURL}/users`, user),
     get: (user: string) => Get<[User]>(`${BaseURL}/users?email=eq.${user}`).then(res => res.length > 0 ? res[0] : undefined)
 }
 
 export const Doctors = {
-    getList: () => Get<User[]>(`${BaseURL}/users`),
-    update: (user: User) => Patch<User, User>(`${BaseURL}/users?email=eq.${user.email}`, user),
-    delete: (user: User) => Delete<Response>(`${BaseURL}/users/${user.email}`),
-    create: (user: User) => Post<User, User>(`${BaseURL}/users`, user),
-    get: (user: string) => Get<[User]>(`${BaseURL}/users?email=eq.${user}`).then(res => res.length > 0 ? res[0] : undefined)
+    getList: () => Get<Doctor[]>(`${BaseURL}/doctor`),
+    update: (doctor: Doctor) => Patch<Doctor, Doctor>(`${BaseURL}/doctor?email=eq.${doctor.email}`, doctor),
+    delete: (doctor: Doctor) => Delete<Response>(`${BaseURL}/doctor/${doctor.email}`),
+    create: (doctor: Doctor) => Post<Doctor, Doctor>(`${BaseURL}/doctor`, doctor),
+    get: (doctor: string) => Get<[Doctor]>(`${BaseURL}/doctor?email=eq.${doctor}`).then(res => res.length > 0 ? res[0] : undefined)
 }
 
 export const Countries = {

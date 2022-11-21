@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import {FC} from "react";
 import {Disease} from "../../models/Disease";
 import {DiseaseForm} from "../../components/disesases/disease-form/DiseaseForm";
 

@@ -5,7 +5,6 @@ import {useForm} from "../../../hooks/UseForm";
 import {useNavigate} from "react-router-dom";
 import {Countries, Discovers, Diseases} from "../../../api/api";
 import {SelectField} from "../../shared/form/select-field/SelectField";
-import {TextField} from "../../shared/form/text-field/TextField";
 import {Disease} from "../../../models/Disease";
 import {DateField} from "../../shared/form/date-field/DateField";
 
@@ -39,7 +38,7 @@ export const DiscoverForm: FC<DiscoverFormProps> = ({discover, formType}) => {
     }, []);
 
     const handleSubmit = async () => {
-        console.log("submiting....");
+        console.log("submitting....");
         console.log(form);
         if (formType === "create") {
             try {
