@@ -5,6 +5,7 @@ import {Discover} from "../models/Discover";
 import {Disease} from "../models/Disease";
 import {DiseaseType} from "../models/DiseaseType";
 import {Doctor} from "../models/Doctor";
+import {PublicServant} from "../models/PublicServant";
 
 const BaseURL = process.env.REACT_APP_BASE_URL;
 
@@ -22,6 +23,14 @@ export const Doctors = {
     delete: (doctor: Doctor) => Delete<Response>(`${BaseURL}/doctor?email=eq.${doctor.email}`),
     create: (doctor: Doctor) => Post<Doctor, Doctor>(`${BaseURL}/doctor`, doctor),
     get: (doctor: string) => Get<[Doctor]>(`${BaseURL}/doctor?email=eq.${doctor}`).then(res => res.length > 0 ? res[0] : undefined)
+}
+
+export const PublicServants = {
+    getList: () => Get<PublicServant[]>(`${BaseURL}/publicservant`),
+    update: (publicservant: PublicServant) => Patch<PublicServant, PublicServant>(`${BaseURL}/publicservant?email=eq.${publicservant.email}`, publicservant),
+    delete: (publicservant: PublicServant) => Delete<Response>(`${BaseURL}/publicservant?email=eq.${publicservant.email}`),
+    create: (publicservant: PublicServant) => Post<PublicServant, PublicServant>(`${BaseURL}/publicservant`, publicservant),
+    get: (publicservant: string) => Get<[PublicServant]>(`${BaseURL}/publicservant?email=eq.${publicservant}`).then(res => res.length > 0 ? res[0] : undefined)
 }
 
 export const Countries = {

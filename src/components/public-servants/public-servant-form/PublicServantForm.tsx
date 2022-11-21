@@ -1,19 +1,19 @@
-import {Doctor} from "../../../models/Doctor";
-import React, {FC, useEffect, useState} from "react";
+import {PublicServant} from "../../../models/PublicServant";
+import {FC, useEffect, useState} from "react";
 import {useForm} from "../../../hooks/UseForm";
 import {User} from "../../../models/User";
 import {useNavigate} from "react-router-dom";
-import {Doctors, Users} from "../../../api/api";
+import {PublicServants, Users} from "../../../api/api";
 import {SelectField} from "../../shared/form/select-field/SelectField";
 import {TextField} from "../../shared/form/text-field/TextField";
 
-export interface DoctorFormProps {
-    doctor: Doctor,
+export interface PublicServantFormProps {
+    publicServant: PublicServant,
     formType: "create" | "edit"
 }
 
-export const DoctorForm: FC<DoctorFormProps> = ({doctor, formType}) => {
-    const {form, handleChange} = useForm(doctor);
+export const PublicServantForm: FC<PublicServantFormProps> = ({publicServant, formType}) => {
+    const {form, handleChange} = useForm(publicServant);
 
     const [users, setUsers] = useState<User[]>([]);
     const navigate = useNavigate();
@@ -37,15 +37,15 @@ export const DoctorForm: FC<DoctorFormProps> = ({doctor, formType}) => {
         console.log(form);
         if (formType === "create") {
             try {
-                await Doctors.create(form);
-                navigate("/doctors");
+                await PublicServants.create(form);
+                navigate("/publicservant");
             } catch (e) {
                 console.log("creation error");
             }
         } else if (formType === "edit") {
             try {
-                await Doctors.update(form);
-                navigate("/doctors");
+                await PublicServants.update(form);
+                navigate("/publicservant");
             } catch (e) {
                 console.log("editing error");
             }
@@ -55,13 +55,13 @@ export const DoctorForm: FC<DoctorFormProps> = ({doctor, formType}) => {
 
     const handleDelete = async () => {
         try {
-            if (window.confirm("want to delete doctor?")) {
-                await Doctors.delete(doctor);
-                navigate('/doctors');
+            if (window.confirm("want to delete public servant?")) {
+                await PublicServants.delete(publicServant);
+                navigate('/publicservant');
             }
         } catch (e) {
             console.error(e);
-            alert("couldn't delete doctor");
+            alert("couldn't delete public servant");
         }
     }
 
@@ -69,11 +69,11 @@ export const DoctorForm: FC<DoctorFormProps> = ({doctor, formType}) => {
         <form action="">
             <SelectField value={form.email} onChange={handleChange} label={"User"} name={"email"}
                          readonly={(formType==="edit")} options={users.map(opt => ({text: opt.name + " " + opt.surname, value: opt.email}))}></SelectField>
-            <TextField name={"degree"} label={"Degree"} value={form.degree} onChange={handleChange}></TextField>
+            <TextField name={"department"} label={"Department"} value={form.department} onChange={handleChange}></TextField>
             <div>
                 <button type={"button"} onClick={handleSubmit}>Submit</button>
                 {formType==="create"?null:<button type={"button"} onClick={handleDelete}>Delete</button>}
-                <button type={"button"} onClick={() => navigate("/doctors")}>Cancel</button>
+                <button type={"button"} onClick={() => navigate("/publicservant")}>Cancel</button>
             </div>
         </form>
     </div>);

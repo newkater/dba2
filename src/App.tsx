@@ -10,6 +10,7 @@ import {DiscoverCreatePage} from "./pages/discovers/DiscoverCreatePage";
 import {DiscoverEditPage} from "./pages/discovers";
 import {DiseaseTypeCreatePage, DiseaseTypeEditPage, DiseaseTypeListPage} from "./pages/disease-types";
 import {DoctorCreatePage, DoctorEditPage, DoctorListPage} from "./pages/doctors";
+import {PublicServantCreatePage, PublicServantEditPage, PublicServantListPage} from "./pages/public-servants";
 
 function App() {
     return (
@@ -26,6 +27,11 @@ function App() {
                         <Route index element={<DoctorListPage/>}/>
                         <Route path='create' element={<DoctorCreatePage/>}/>
                         <Route path=':email' element={<DoctorEditPage/>}/>
+                    </Route>
+                    <Route path='publicservant'>
+                        <Route index element={<PublicServantListPage/>}/>
+                        <Route path='create' element={<PublicServantCreatePage/>}/>
+                        <Route path=':email' element={<PublicServantEditPage/>}/>
                     </Route>
                     <Route path='countries'>
                         <Route index element={<CountryListPage/>}/>
