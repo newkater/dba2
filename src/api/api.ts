@@ -19,13 +19,14 @@ export const Users = {
 export const Doctors = {
     getList: () => Get<Doctor[]>(`${BaseURL}/doctor`),
     update: (doctor: Doctor) => Patch<Doctor, Doctor>(`${BaseURL}/doctor?email=eq.${doctor.email}`, doctor),
-    delete: (doctor: Doctor) => Delete<Response>(`${BaseURL}/doctor/${doctor.email}`),
+    delete: (doctor: Doctor) => Delete<Response>(`${BaseURL}/doctor?email=eq.${doctor.email}`),
     create: (doctor: Doctor) => Post<Doctor, Doctor>(`${BaseURL}/doctor`, doctor),
     get: (doctor: string) => Get<[Doctor]>(`${BaseURL}/doctor?email=eq.${doctor}`).then(res => res.length > 0 ? res[0] : undefined)
 }
 
 export const Countries = {
     getList: () => Get<Country[]>(`${BaseURL}/country`),
+    delete: (country: Country) => Delete<Response>(`${BaseURL}/country?cname=eq.${country.cname}`),
     update: (country: Country) => Patch<Country, Country>(`${BaseURL}/country?cname=eq.${country.cname}`, country),
     get: (country: string) => Get<[Country]>(`${BaseURL}/country?cname=eq.${country}`).then(res => res.length > 0 ? res[0] : undefined),
     create: (country: Country) => Post<Country, Country>(`${BaseURL}/country`, country),

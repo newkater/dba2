@@ -1,8 +1,8 @@
 import {Country} from "../../../models/Country";
-import {FC} from "react";
+import React, {FC} from "react";
 import {useForm} from "../../../hooks/UseForm";
 import {useNavigate} from "react-router-dom";
-import {Countries} from "../../../api/api";
+import {Countries, Users} from "../../../api/api";
 import {TextField} from "../../shared/form/text-field/TextField";
 import {NumberField} from "../../shared/form/number-field/NumberField";
 
@@ -37,6 +37,18 @@ export const CountryForm: FC<CountryFormProps> = ({country, formType}) => {
 
     }
 
+    const handleDelete = async () => {
+        try {
+            if (window.confirm("want to delete country?")) {
+                await Countries.delete(country);
+                navigate('/countries');
+            }
+        } catch (e) {
+            console.error(e);
+            alert("couldn't delete country");
+        }
+    }
+
     return (<div>
         <form action="">
             <TextField name={"cname"} onChange={handleChange} label={"Country Name"} value={form.cname}
@@ -45,6 +57,7 @@ export const CountryForm: FC<CountryFormProps> = ({country, formType}) => {
                          step={1000}></NumberField>
             <div>
                 <button type={"button"} onClick={handleSubmit}>Submit</button>
+                {formType==="create"?null:<button type={"button"} onClick={handleDelete}>Delete</button>}
                 <button type={"button"} onClick={() => navigate("/countries")}>Cancel</button>
             </div>
         </form>
