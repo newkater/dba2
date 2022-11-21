@@ -1,7 +1,8 @@
 import {FC, useEffect, useState} from "react";
 import {DiseaseType} from "../../../models/DiseaseType";
-import {DiseaseTypes} from "../../../api/api";
+import {Discovers, DiseaseTypes} from "../../../api/api";
 import {Link} from "react-router-dom";
+import {Discover} from "../../../models/Discover";
 
 export const DiseaseTypeList: FC = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +22,20 @@ export const DiseaseTypeList: FC = () => {
         }
         getDiseaseTypes();
     }, [])
+
+    const handleDelete = async (dt: DiseaseType) => {
+        try {
+            if (window.confirm("want to delete disease type?")) {
+                await DiseaseTypes.delete(dt);
+                const newDT = diseaseTypes.filter(d => (d.id !== dt.id));
+                setDiseaseTypes(newDT);
+            }
+        } catch (e) {
+            console.error(e);
+            alert("couldn't delete disease type");
+        }
+    }
+
     return (<>
         {isLoading ? <div>loading users ....</div> :
             <ul>
@@ -28,6 +43,7 @@ export const DiseaseTypeList: FC = () => {
                     <>
                         {dt.id} {dt.description}
                         <Link to={`/diseasetype/${dt.id}`}>edit</Link>
+                        <button onClick={() => handleDelete(dt)}>delete</button>
                     </>
                 </li>)}
             </ul>}

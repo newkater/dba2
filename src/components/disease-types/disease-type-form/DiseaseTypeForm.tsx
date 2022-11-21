@@ -1,8 +1,8 @@
-import {FC} from "react";
+import React, {FC} from "react";
 import {useForm} from "../../../hooks/UseForm";
 import {DiseaseType} from "../../../models/DiseaseType";
 import {useNavigate} from "react-router-dom";
-import {DiseaseTypes} from "../../../api/api";
+import {Discovers, DiseaseTypes} from "../../../api/api";
 import {TextField} from "../../shared/form/text-field/TextField";
 import {NumberField} from "../../shared/form/number-field/NumberField";
 
@@ -37,6 +37,18 @@ export const DiseaseTypeForm: FC<DiseaseTypeFormProps> = ({diseaseType, formType
 
     }
 
+    const handleDelete = async () => {
+        try {
+            if (window.confirm("want to delete disease type?")) {
+                await DiseaseTypes.delete(diseaseType);
+                navigate('/diseasetype');
+            }
+        } catch (e) {
+            console.error(e);
+            alert("couldn't delete disease type");
+        }
+    }
+
     return (<div>
         <form action="">
             <NumberField name={"id"} value={form.id} label={"ID"} onChange={handleChange}
@@ -45,6 +57,7 @@ export const DiseaseTypeForm: FC<DiseaseTypeFormProps> = ({diseaseType, formType
             ></TextField>
             <div>
                 <button type={"button"} onClick={handleSubmit}>Submit</button>
+                {formType==="create"?null:<button type={"button"} onClick={handleDelete}>Delete</button>}
                 <button type={"button"} onClick={() => navigate("/diseasetype")}>Cancel</button>
             </div>
         </form>
