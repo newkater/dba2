@@ -1,5 +1,5 @@
 import {Discover} from "../../../models/Discover";
-import {FC, useEffect, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import {Country} from "../../../models/Country";
 import {useForm} from "../../../hooks/UseForm";
 import {useNavigate} from "react-router-dom";
@@ -58,6 +58,18 @@ export const DiscoverForm: FC<DiscoverFormProps> = ({discover, formType}) => {
 
     }
 
+    const handleDelete = async () => {
+        try {
+            if (window.confirm("want to delete discover?")) {
+                await Discovers.delete(discover);
+                navigate('/discover');
+            }
+        } catch (e) {
+            console.error(e);
+            alert("couldn't delete discover");
+        }
+    }
+
     return (<div>
         <form action="">
             <SelectField readonly={formType === "edit"} value={form.cname} onChange={handleChange} label={"Country"}
@@ -73,6 +85,7 @@ export const DiscoverForm: FC<DiscoverFormProps> = ({discover, formType}) => {
                        onChange={handleChange}></DateField>
             <div>
                 <button type={"button"} onClick={handleSubmit}>Submit</button>
+                {formType==="create"?null:<button type={"button"} onClick={handleDelete}>Delete</button>}
                 <button type={"button"} onClick={() => navigate("/discover")}>Cancel</button>
             </div>
         </form>

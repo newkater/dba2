@@ -2,6 +2,8 @@ import {FC, useEffect, useState} from "react";
 import {Discover} from "../../../models/Discover";
 import api from "../../../api";
 import {Link} from "react-router-dom";
+import {Country} from "../../../models/Country";
+import {Countries, Discovers} from "../../../api/api";
 
 export const DiscoverList: FC = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +23,20 @@ export const DiscoverList: FC = () => {
         }
         getDiscovers();
     }, [])
+
+    const handleDelete = async (discover: Discover) => {
+        try {
+            if (window.confirm("want to delete discover?")) {
+                await Discovers.delete(discover);
+                const newDiscovers = discovers.filter(d => (d.disease_code !== discover.disease_code && d.cname !== discover.cname));
+                setDiscovers(newDiscovers);
+            }
+        } catch (e) {
+            console.error(e);
+            alert("couldn't delete discover");
+        }
+    }
+
     return (<>
         {isLoading ? <div>loading users ....</div> :
             <ul>
@@ -28,6 +44,7 @@ export const DiscoverList: FC = () => {
                     <>
                         {discover.disease_code} {discover.cname} {discover.first_enc_date}
                         <Link rel="stylesheet" to={`/discover/${discover.cname}/${discover.disease_code}`}>edit</Link>
+                        <button onClick={() => handleDelete(discover)}>delete</button>
                     </>
                 </li>)}
             </ul>}

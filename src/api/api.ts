@@ -34,6 +34,7 @@ export const Countries = {
 
 export const Diseases = {
     getList: () => Get<Disease[]>(`${BaseURL}/disease`),
+    delete: (disease: Disease) => Delete<Response>(`${BaseURL}/disease?disease_code=eq.${disease.disease_code}`),
     update: (disease: Disease) => Patch<Disease, Disease>(`${BaseURL}/disease?disease_code=eq.${disease.disease_code}`, disease),
     get: (disease: string) => Get<[Disease]>(`${BaseURL}/disease?disease_code=eq.${disease}`).then(res => res.length > 0 ? res[0] : undefined),
     create: (disease: Disease) => Post<Disease, Disease>(`${BaseURL}/disease`, disease),
@@ -41,6 +42,7 @@ export const Diseases = {
 
 export const Discovers = {
     getList: () => Get<Discover[]>(`${BaseURL}/discover`),
+    delete: (discover: Discover) => Delete<Response>(`${BaseURL}/discover?cname=eq.${discover.cname}&disease_code=eq.${discover.disease_code}`),
     update: (discover: Discover) => Patch<Discover, Discover>(`${BaseURL}/discover?cname=eq.${discover.cname}&disease_code=eq.${discover.disease_code}`, discover),
     create: (discover: Discover) => Post<Discover, Discover>(`${BaseURL}/discover`, discover),
     get: (cname: string, disease_code: string) => Get<[Discover]>(`${BaseURL}/discover?disease_code=eq.${disease_code}&cname=eq.${cname}`).then(res => res.length > 0 ? res[0] : undefined)
@@ -50,6 +52,7 @@ export const DiseaseTypes = {
     getList: () => Get<DiseaseType[]>(`${BaseURL}/diseasetype`).then(res => res.sort((a, b) => {
         return a.id - b.id;
     })),
+    delete: (diseasetype: DiseaseType) => Delete<Response>(`${BaseURL}/diseasetype?id=eq.${diseasetype.id}`),
     update: (diseasetype: DiseaseType) => Patch<DiseaseType, DiseaseType>(`${BaseURL}/diseasetype?id=eq.${diseasetype.id}`, diseasetype),
     get: (diseasetype: number) => Get<[DiseaseType]>(`${BaseURL}/diseasetype?id=eq.${diseasetype}`).then(res => res.length > 0 ? res[0] : undefined),
     create: (diseasetype: DiseaseType) => Post<DiseaseType, DiseaseType>(`${BaseURL}/diseasetype`, diseasetype),

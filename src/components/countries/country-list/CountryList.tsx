@@ -24,7 +24,7 @@ export const CountryList: FC = () => {
 
     const handleDelete = async (country: Country) => {
         try {
-            if (window.confirm("want to delete user?")) {
+            if (window.confirm("want to delete country?")) {
                 await Countries.delete(country);
                 const newCountries = countries.filter(c => c.cname !== country.cname);
                 setCountries(newCountries);
