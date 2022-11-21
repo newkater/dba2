@@ -1,5 +1,5 @@
 import {Disease} from "../../../models/Disease";
-import {FC, useEffect, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import {useForm} from "../../../hooks/UseForm";
 import {useNavigate} from "react-router-dom";
 import {Diseases, DiseaseTypes} from "../../../api/api";
@@ -53,6 +53,17 @@ export const DiseaseForm: FC<DiseaseFormProps> = ({disease, formType}) => {
 
     }
 
+    const handleDelete = async () => {
+        try {
+            if (window.confirm("want to delete disease?")) {
+                await Diseases.delete(disease);
+                navigate('/disease');
+            }
+        } catch (e) {
+            console.error(e);
+            alert("couldn't delete disease");
+        }
+    }
 
     return (<div>
         <form action="">
@@ -67,6 +78,7 @@ export const DiseaseForm: FC<DiseaseFormProps> = ({disease, formType}) => {
             <NumberField name={"id"} value={form.id} label={"ID"} onChange={handleChange} readonly={true}></NumberField>
             <div>
                 <button type={"button"} onClick={handleSubmit}>Submit</button>
+                {formType==="create"?null:<button type={"button"} onClick={handleDelete}>Delete</button>}
                 <button type={"button"} onClick={() => navigate("/disease")}>Cancel</button>
             </div>
         </form>
