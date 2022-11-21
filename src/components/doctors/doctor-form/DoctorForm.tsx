@@ -1,9 +1,9 @@
 import {Doctor} from "../../../models/Doctor";
-import {FC, useEffect, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import {useForm} from "../../../hooks/UseForm";
 import {User} from "../../../models/User";
 import {useNavigate} from "react-router-dom";
-import {Doctors, Users} from "../../../api/api";
+import {Diseases, Doctors, Users} from "../../../api/api";
 import {SelectField} from "../../shared/form/select-field/SelectField";
 import {TextField} from "../../shared/form/text-field/TextField";
 
@@ -53,6 +53,18 @@ export const DoctorForm: FC<DoctorFormProps> = ({doctor, formType}) => {
 
     }
 
+    const handleDelete = async () => {
+        try {
+            if (window.confirm("want to delete doctor?")) {
+                await Doctors.delete(doctor);
+                navigate('/doctors');
+            }
+        } catch (e) {
+            console.error(e);
+            alert("couldn't delete doctor");
+        }
+    }
+
     return (<div>
         <form action="">
             <SelectField value={form.email} onChange={handleChange} label={"User"} name={"email"}
@@ -60,6 +72,7 @@ export const DoctorForm: FC<DoctorFormProps> = ({doctor, formType}) => {
             <TextField name={"degree"} label={"Degree"} value={form.degree} onChange={handleChange}></TextField>
             <div>
                 <button type={"button"} onClick={handleSubmit}>Submit</button>
+                {formType==="create"?null:<button type={"button"} onClick={handleDelete}>Delete</button>}
                 <button type={"button"} onClick={() => navigate("/doctors")}>Cancel</button>
             </div>
         </form>

@@ -1,8 +1,7 @@
 import {FC, useEffect, useState} from "react";
 import {Disease} from "../../../models/Disease";
-import {Diseases, DiseaseTypes} from "../../../api/api";
+import {Diseases} from "../../../api/api";
 import {Link} from "react-router-dom";
-import {DiseaseType} from "../../../models/DiseaseType";
 
 export const DiseaseList: FC = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +25,7 @@ export const DiseaseList: FC = () => {
 
     const handleDelete = async (disease: Disease) => {
         try {
-            if (window.confirm("want to delete disease type?")) {
+            if (window.confirm("want to delete disease?")) {
                 await Diseases.delete(disease);
                 const newDiseases = diseases.filter(d => (d.disease_code !== disease.disease_code));
                 setDiseases(newDiseases);

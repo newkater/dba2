@@ -1,8 +1,7 @@
 import {FC, useEffect, useState} from "react";
 import {DiseaseType} from "../../../models/DiseaseType";
-import {Discovers, DiseaseTypes} from "../../../api/api";
+import {DiseaseTypes} from "../../../api/api";
 import {Link} from "react-router-dom";
-import {Discover} from "../../../models/Discover";
 
 export const DiseaseTypeList: FC = () => {
     const [isLoading, setIsLoading] = useState(true);

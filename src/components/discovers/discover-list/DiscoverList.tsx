@@ -2,8 +2,7 @@ import {FC, useEffect, useState} from "react";
 import {Discover} from "../../../models/Discover";
 import api from "../../../api";
 import {Link} from "react-router-dom";
-import {Country} from "../../../models/Country";
-import {Countries, Discovers} from "../../../api/api";
+import {Discovers} from "../../../api/api";
 
 export const DiscoverList: FC = () => {
     const [isLoading, setIsLoading] = useState(true);

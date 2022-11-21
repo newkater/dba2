@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import {useForm} from "../../../hooks/UseForm";
 import {DiseaseType} from "../../../models/DiseaseType";
 import {useNavigate} from "react-router-dom";
-import {Discovers, DiseaseTypes} from "../../../api/api";
+import {DiseaseTypes} from "../../../api/api";
 import {TextField} from "../../shared/form/text-field/TextField";
 import {NumberField} from "../../shared/form/number-field/NumberField";
 
