@@ -1,11 +1,13 @@
 import {User} from "../models/User";
-import {Delete, Get, Patch, Post, Put} from "./fetch";
+import {Delete, Get, Patch, Post} from "./fetch";
 import {Country} from "../models/Country";
 import {Discover} from "../models/Discover";
 import {Disease} from "../models/Disease";
 import {DiseaseType} from "../models/DiseaseType";
 import {Doctor} from "../models/Doctor";
 import {PublicServant} from "../models/PublicServant";
+import {Record} from "../models/Record";
+import {Specialize} from "../models/Specialize";
 
 const BaseURL = process.env.REACT_APP_BASE_URL;
 
@@ -65,4 +67,20 @@ export const DiseaseTypes = {
     update: (diseasetype: DiseaseType) => Patch<DiseaseType, DiseaseType>(`${BaseURL}/diseasetype?id=eq.${diseasetype.id}`, diseasetype),
     get: (diseasetype: number) => Get<[DiseaseType]>(`${BaseURL}/diseasetype?id=eq.${diseasetype}`).then(res => res.length > 0 ? res[0] : undefined),
     create: (diseasetype: DiseaseType) => Post<DiseaseType, DiseaseType>(`${BaseURL}/diseasetype`, diseasetype),
+}
+
+export const Specializes = {
+    getList: () => Get<Specialize[]>(`${BaseURL}/specialize`),
+    delete: (specialize: Specialize) => Delete<Response>(`${BaseURL}/specialize?id=eq.${specialize.id}&email=eq.${specialize.email}`),
+    update: (specialize: Specialize) => Patch<Specialize, Specialize>(`${BaseURL}/specialize?id=eq.${specialize.id}&email=eq.${specialize.email}`, specialize),
+    create: (specialize: Specialize) => Post<Specialize, Specialize>(`${BaseURL}/specialize`, specialize),
+    get: (id: number, email: string) => Get<[Specialize]>(`${BaseURL}/specialize?id=eq.${id}&email=eq.${email}`).then(res => res.length > 0 ? res[0] : undefined)
+}
+
+export const Records = {
+    getList: () => Get<Record[]>(`${BaseURL}/record`),
+    delete: (record: Record) => Delete<Response>(`${BaseURL}/record?email=eq.${record.email}&cname=eq.${record.cname}&disease_code=eq.${record.disease_code}`),
+    update: (record: Record) => Patch<Record, Record>(`${BaseURL}/record?email=eq.${record.email}&cname=eq.${record.cname}&disease_code=eq.${record.disease_code}`, record),
+    create: (record: Record) => Post<Record, Record>(`${BaseURL}/record`, record),
+    get: (email: string, cname: string, disease_code: string) => Get<[Record]>(`${BaseURL}/record?email=eq.${email}&cname=eq.${cname}&disease_code=eq.${disease_code}`).then(res => res.length > 0 ? res[0] : undefined)
 }

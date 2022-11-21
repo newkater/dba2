@@ -11,6 +11,8 @@ import {DiscoverEditPage} from "./pages/discovers";
 import {DiseaseTypeCreatePage, DiseaseTypeEditPage, DiseaseTypeListPage} from "./pages/disease-types";
 import {DoctorCreatePage, DoctorEditPage, DoctorListPage} from "./pages/doctors";
 import {PublicServantCreatePage, PublicServantEditPage, PublicServantListPage} from "./pages/public-servants";
+import {RecordCreatePage, RecordEditPage, RecordListPage} from "./pages/records";
+import {SpecializeCreatePage, SpecializeEditPage, SpecializeListPage} from "./pages/specializes";
 
 function App() {
     return (
@@ -52,6 +54,16 @@ function App() {
                         <Route index element={<DiscoverListPage/>}/>
                         <Route path='create' element={<DiscoverCreatePage/>}/>
                         <Route path=':cname/:disease_code' element={<DiscoverEditPage/>}/>
+                    </Route>
+                    <Route path='record'>
+                        <Route index element={<RecordListPage/>}/>
+                        <Route path='create' element={<RecordCreatePage/>}/>
+                        <Route path=':email/:cname/:disease_code' element={<RecordEditPage/>}/>
+                    </Route>
+                    <Route path='specialize'>
+                        <Route index element={<SpecializeListPage/>}/>
+                        <Route path='create' element={<SpecializeCreatePage/>}/>
+                        <Route path=':id/:email' element={<SpecializeEditPage/>}/>
                     </Route>
                 </Route>
             </Routes>

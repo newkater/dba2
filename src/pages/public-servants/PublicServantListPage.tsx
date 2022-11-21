@@ -4,7 +4,7 @@ import {PublicServantList} from "../../components/public-servants/public-servant
 
 export const PublicServantListPage: FC = () => {
     return (<>
-        <h2>Doctor List Page</h2>
+        <h2>Public Servant List Page</h2>
         <Link to='/publicservant/create'>Create Public Servant</Link>
         <PublicServantList></PublicServantList>
     </>)
