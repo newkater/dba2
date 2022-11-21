@@ -5,7 +5,7 @@ import {NumberField} from "../../shared/form/number-field/NumberField";
 import * as api from "../../../api/api";
 import {useNavigate} from "react-router-dom";
 import {Country} from "../../../models/Country";
-import {Countries} from "../../../api/api";
+import {Countries, Users} from "../../../api/api";
 import {SelectField} from "../../shared/form/select-field/SelectField";
 import {useForm} from "../../../hooks/UseForm";
 
@@ -55,6 +55,19 @@ export const UserForm: FC<UserFormProps> = ({user, formType}) => {
 
     }
 
+
+    const handleDelete = async () => {
+        try {
+            if (window.confirm("want to delete user?")) {
+                await Users.delete(user);
+                navigate('/users');
+            }
+        } catch (e) {
+            console.error(e);
+            alert("couldn't delete user");
+        }
+    }
+
     return (<div>
         <form action="">
             <TextField name={"email"} value={form.email} label={"Email"} onChange={handleChange}></TextField>
@@ -68,6 +81,7 @@ export const UserForm: FC<UserFormProps> = ({user, formType}) => {
                          options={countries.map(opt => ({text: opt.cname, value: opt.cname}))}></SelectField>
             <div>
                 <button type={"button"} onClick={handleSubmit}>Submit</button>
+                {formType==="create"?null:<button type={"button"} onClick={handleDelete}>Delete</button>}
                 <button type={"button"} onClick={() => navigate("/users")}>Cancel</button>
             </div>
         </form>
